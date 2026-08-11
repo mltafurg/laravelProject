@@ -76,7 +76,7 @@ class ProductController extends Controller
     {
         $request->validate([
             "name" => "required",
-            "price" => "required"
+            "price" => ["required", "integer", "min:1"]
             // metodo de request que con el nombre de los datos del 
             // formulario mira si mando un dato y no dejo vacio
         ]);
