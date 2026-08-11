@@ -25,6 +25,8 @@ Route::get('/about', function () {
 
 })  ->name("home.about");
 
+Route::get('/contact', 'App\Http\Controllers\ContactController@index') ->name("home.contact");
+
 
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name("product.index");
 Route::get('/products/create', 'App\Http\Controllers\ProductController@create')->name("product.create");
