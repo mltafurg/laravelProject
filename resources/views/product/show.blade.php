@@ -13,19 +13,27 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">
+        @if ($viewData["product"]["price"] > 80)
+         <span class = "text-danger"> 
+         <h5 class="card-title">
            {{ $viewData["product"]["name"] }}
-<!-- IMPORTANT!, como ya sabemos el viewdata tiene un product donde adentro esta toda la info de el producto
- pero entonces como accedemos a un solo dato?
- con un corchete al lado, significa que [dato del arreglo ext][dato del arreglo int], y como tenemos 
- un arreglo adentro de otro entonces ponemos product (arrelgo) y name que esta adentro de product  
- -->
-        </h5>
+          </h5>
+         </span>
+         @else
+         <h5 class="card-title">
+           {{ $viewData["product"]["name"] }}
+          </h5>
+         @endif
         <p class="card-text">{{ $viewData["product"]["description"]}}</p>
-<!-- lo mimso pasa aqui -->
        <p class="card-text">{{ $viewData["product"]["price"]}}</p>
       </div>
     </div>
   </div>
 </div>
 @endsection
+
+<!-- IMPORTANT!, como ya sabemos el viewdata tiene un product donde adentro esta toda la info de el producto
+ pero entonces como accedemos a un solo dato?
+ con un corchete al lado, significa que [dato del arreglo ext][dato del arreglo int], y como tenemos 
+ un arreglo adentro de otro entonces ponemos product (arrelgo) y name que esta adentro de product  
+ -->
