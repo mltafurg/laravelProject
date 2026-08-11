@@ -72,7 +72,7 @@ class ProductController extends Controller
         return view('product.create')->with("viewData",$viewData);
     } // funcion para crear productos 
 
-    public function save(Request $request)
+    public function save(Request $request) : View
     {
         $request->validate([
             "name" => "required",
@@ -80,7 +80,10 @@ class ProductController extends Controller
             // metodo de request que con el nombre de los datos del 
             // formulario mira si mando un dato y no dejo vacio
         ]);
-        dd($request->all());
+        $viewData = []; //to be sent to the view
+        $viewData["subtitle"] = "Product created succesfully! Yay!";
+ 
+        return view('product.save') -> with("viewData", $viewData);
         //muestra los datos en pantalla y termina el codigo
         //here will be the code to call the model and save it to the database
     }
