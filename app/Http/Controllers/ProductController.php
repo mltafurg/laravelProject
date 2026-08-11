@@ -80,10 +80,12 @@ class ProductController extends Controller
             // metodo de request que con el nombre de los datos del 
             // formulario mira si mando un dato y no dejo vacio
         ]);
+                
         $viewData = []; //to be sent to the view
         $viewData["subtitle"] = "Product created succesfully! Yay!";
  
         return view('product.save') -> with("viewData", $viewData);
+        // antes:         dd($request->all());
         //muestra los datos en pantalla y termina el codigo
         //here will be the code to call the model and save it to the database
     }
