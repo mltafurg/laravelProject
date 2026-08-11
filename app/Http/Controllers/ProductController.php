@@ -8,10 +8,10 @@ use Illuminate\View\View;
 class ProductController extends Controller
 {
     public static $products = [ // arreglo asociativo
-        ["id"=>"1", "name"=>"TV", "description"=>"Best TV"],
-        ["id"=>"2", "name"=>"iPhone", "description"=>"Best iPhone"],
-        ["id"=>"3", "name"=>"Chromecast", "description"=>"Best Chromecast"],
-        ["id"=>"4", "name"=>"Glasses", "description"=>"Best Glasses"]
+        ["id"=>"1", "name"=>"TV", "description"=>"Best TV","price"=> 3000000],
+        ["id"=>"2", "name"=>"iPhone", "description"=>"Best iPhone","price"=> 2500000],
+        ["id"=>"3", "name"=>"Chromecast", "description"=>"Best Chromecast","price"=> 100000],
+        ["id"=>"4", "name"=>"Glasses", "description"=>"Best Glasses","price"=> 150000]
     ];
 
     
@@ -48,7 +48,7 @@ class ProductController extends Controller
         $product = ProductController::$products[$id-1];
         $viewData["title"] = $product["name"]." - Online Store";
         $viewData["subtitle"] =  $product["name"]." - Product information";
-        $viewData["product"] = $product;
+        $viewData["product"] = $product; // aqui adentro esta el price, podemos llamarlo en show con [product][price]
         return view('product.show')->with("viewData", $viewData);
     }
 // muestra los datos de cada producto, el '.' sirve como concatenador
