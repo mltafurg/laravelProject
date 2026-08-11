@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
@@ -42,14 +43,22 @@ class ProductController extends Controller
         
     }
 
-    public function show(string $id) : View
+    public function show(string $id) : View | \Illuminate\Http\RedirectResponse
     {
         $viewData = [];
+    
+        
+        if ( ctype_digit($id) && array_key_exists($id-1, ProductController::$products  )== true) {
         $product = ProductController::$products[$id-1];
         $viewData["title"] = $product["name"]." - Online Store";
         $viewData["subtitle"] =  $product["name"]." - Product information";
         $viewData["product"] = $product; // aqui adentro esta el price, podemos llamarlo en show con [product][price]
         return view('product.show')->with("viewData", $viewData);
+        }else{
+            return redirect()->route('home.index');
+        }
+       
+       
     }
 // muestra los datos de cada producto, el '.' sirve como concatenador
 // delvulve los datos con view
