@@ -18,5 +18,30 @@ class HomeController extends Controller // extends es para herencia!!
         el nombre de la carpeta y despues el nombre del archivo
         */
     }
+
+    function contact():View {
+    $viewData = [];
+    $viewData["title"] = "Contact us!";
+    $viewData["subtitle"] = "To know more about this page..";
+    $viewData["name"] = "Maria Laura Tafur";
+    $viewData["dir"] = "London, UK";
+    $viewData["tel"] = "300567345";
+
+    return view("home.contact") -> with("viewData", $viewData);
+
+    }
+
+
+    function about():View{
+        $viewData = [];
+        $viewData["title"] = "About us - Online Store";
+        $viewData["subtitle"] = "About us";
+        $viewData["description"] = "This is an about page ...";
+        $viewData["author"] = "Developed by: Your Name";
+
+        return view("home.about") -> with("viewData",$viewData);
+    }
+
+
 }
 

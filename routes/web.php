@@ -13,19 +13,10 @@ escribir todo eso otravez
 */
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name("home.index");
 
-Route::get('/about', function () {
-    $data1 = "About us - Online Store";
-    $data2 = "About us";
-    $description = "This is an about page ...";
-    $author = "Developed by: Your Name";
-    return view('home.about')->with("title", $data1)
-      ->with("subtitle", $data2)
-      ->with("description", $description)
-      ->with("author", $author);
+Route::get('/about', 'App\Http\Controllers\HomeController@about') -> name("home.about");
+    
 
-})  ->name("home.about");
-
-Route::get('/contact', 'App\Http\Controllers\ContactController@index') ->name("home.contact");
+Route::get('/contact', 'App\Http\Controllers\HomeController@contact') ->name("home.contact");
 
 
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name("product.index");
