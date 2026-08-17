@@ -35,4 +35,7 @@
  pero entonces como accedemos a un solo dato?
  con un corchete al lado, significa que [dato del arreglo ext][dato del arreglo int], y como tenemos 
  un arreglo adentro de otro entonces ponemos product (arrelgo) y name que esta adentro de product  
+
+ Con bases de datos es similar porque al tener en product un objeto, el objeto tiene un metodo interno que permite buscar 
+ con corchetes o flechas el atributo que se en uentra en el dicc attributes y devuelve el valor
  -->
