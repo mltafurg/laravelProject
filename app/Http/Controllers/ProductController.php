@@ -5,17 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
-    public static $products = [ // arreglo asociativo
-        ["id"=>"1", "name"=>"TV", "description"=>"Best TV","price"=> 3000000],
-        ["id"=>"2", "name"=>"iPhone", "description"=>"Best iPhone","price"=> 2500000],
-        ["id"=>"3", "name"=>"Chromecast", "description"=>"Best Chromecast","price"=> 100000],
-        ["id"=>"4", "name"=>"Glasses", "description"=>"Best Glasses","price"=> 150000]
-    ];
-
-    
 
     public function index(): View
     {  // es un arreglo asociativo 
@@ -23,8 +17,8 @@ class ProductController extends Controller
         $viewData["title"] = "Products - Online Store";
         $viewData["subtitle"] =  "List of products";
         // se guarda la tabla en el arrgelo con clave de productos
-        $viewData["products"] = ProductController::$products;
-        // 
+        $viewData["products"] = Product::all(); 
+        // el modelo product con all() devuelve una coleccion donde cada elemento es un objeto
         return view('product.index')->with("viewData", $viewData);
         // view es para buscar el archivo que se va a renderizar 
         /*
@@ -47,19 +41,18 @@ class ProductController extends Controller
     {
         $viewData = [];
     
-        
-        if ( ctype_digit($id) && array_key_exists($id-1, ProductController::$products  )== true) {
-        $product = ProductController::$products[$id-1];
+        try{
+         $product = Product::findOrFail($id);
         $viewData["title"] = $product["name"]." - Online Store";
         $viewData["subtitle"] =  $product["name"]." - Product information";
         $viewData["product"] = $product; // aqui adentro esta el price, podemos llamarlo en show con [product][price]
         return view('product.show')->with("viewData", $viewData);
-        }else{
-            return redirect()->route('home.index');
-        }
-       
-       
+        }catch(ModelNotFoundException){
+             return redirect()->route('home.index');
+        }       
     }
+
+    //hacemos un try catch para seguir con la actividad opcional de ver si el id exixste o no, y si no existe es redirecionado a home
 // muestra los datos de cada producto, el '.' sirve como concatenador
 // delvulve los datos con view
 

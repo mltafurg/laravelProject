@@ -24,7 +24,6 @@
            {{ $viewData["product"]["name"] }}
           </h5>
          @endif
-        <p class="card-text">{{ $viewData["product"]["description"]}}</p>
        <p class="card-text">{{ $viewData["product"]["price"]}}</p>
       </div>
     </div>
