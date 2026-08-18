@@ -25,6 +25,9 @@
           </h5>
          @endif
        <p class="card-text">{{ $viewData["product"]["price"]}}</p>
+         @foreach($viewData["product"]->comments as $comment)
+          - {{ $comment->getDescription() }}<br />
+        @endforeach
       </div>
     </div>
   </div>
@@ -38,4 +41,5 @@
 
  Con bases de datos es similar porque al tener en product un objeto, el objeto tiene un metodo interno que permite buscar 
  con corchetes o flechas el atributo que se en uentra en el dicc attributes y devuelve el valor
+
  -->

@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory; // dice la dir de la herramienta hasfactory
+use App\Models\Comment;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
+
 
 class Product extends Model // creacion clase prodcuct que hereda de model
 {
@@ -13,7 +17,10 @@ class Product extends Model // creacion clase prodcuct que hereda de model
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['name'] - string - contains the product name
      * $this->attributes['price'] - int - contains the product price
+     * $this->comments - Comment[] - contains the associated comments
     */
+
+    
 
 
     protected $fillable = ['name','price'];
@@ -52,6 +59,25 @@ class Product extends Model // creacion clase prodcuct que hereda de model
     {
         $this->attributes['price'] = $price;
     }
+
+        public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+        // aqui vemos que un producto puede tener varios comentarios
+        // por lo tanto del id del producto buscamos todos los comentarios que tienen ese id del producto
+        
+    }
+
+    public function getComments(): Collection
+    {
+        return $this->comments; // retorna la collecion de instancias de comments
+    }
+
+    public function setComments(Collection $comments): void
+    {
+        $this->comments = $comments; // recibe esa coleccion
+    }
+
 
 
 }
