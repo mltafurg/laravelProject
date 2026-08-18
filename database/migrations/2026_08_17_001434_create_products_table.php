@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-//esto es una clase anonima que hereda de Migration, se utiliza para evitar la colision de nombres en la carpetamigrations
+    // esto es una clase anonima que hereda de Migration, se utiliza para evitar la colision de nombres en la carpetamigrations
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ return new class extends Migration
 
             // schema es aquel  que tiene la logica de las consultas de bases de datos guardadas
             // para que solo uno con los comandos de create (crea tabla nueva), modify o destroy realice lo q quiera
-            // create recibe el nombre de la tabla a crear y una funcion anonima 
+            // create recibe el nombre de la tabla a crear y una funcion anonima
             // que recibe como parametro una instancia de blueprint q es la que define que tiene la tabla
 
             $table->id(); // clave primaria
@@ -33,7 +33,6 @@ return new class extends Migration
     }
     // metodo que se ejecuta al hacer el comando php artisan migrate
     // para construir la estrucutra de la BD
-
 
     /**
      * Reverse the migrations.
