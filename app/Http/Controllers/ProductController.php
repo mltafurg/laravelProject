@@ -16,7 +16,7 @@ class ProductController extends Controller
         $viewData['title'] = 'Products - Online Store';
         $viewData['subtitle'] = 'List of products';
         // se guarda la tabla en el arrgelo con clave de productos
-        $viewData['products'] = Product::all();
+        $viewData['products'] = Product::with('comments')->get();
 
         // el modelo product con all() devuelve una coleccion donde cada elemento es un objeto
         return view('product.index')->with('viewData', $viewData);
