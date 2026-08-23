@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -43,9 +43,9 @@ class ProductController extends Controller
 
         try {
             $product = Product::findOrFail($id);
-            $viewData['title'] = $product['name'].' - Online Store';
-            $viewData['subtitle'] = $product['name'].' - Product information';
-            $viewData['product'] = $product; // aqui adentro esta el price, podemos llamarlo en show con [product][price]
+            $viewData['title'] = $product->getName() . ' - Online Store';
+            $viewData['subtitle'] = $product->getName() . ' - Product information';
+            $viewData['product'] = $product; 
 
             return view('product.show')->with('viewData', $viewData);
         } catch (ModelNotFoundException) {
@@ -65,14 +65,9 @@ class ProductController extends Controller
         return view('product.create')->with('viewData', $viewData);
     } // funcion para crear productos
 
-    public function save(Request $request): RedirectResponse
+    public function save(ProductRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => ['required', 'integer', 'min:1'],
-            // metodo de request que con el nombre de los datos del
-            // formulario mira si mando un dato y no dejo vacio
-        ]);
+    
         Product::create($request->only(['name', 'price']));
 
         return back();
@@ -87,5 +82,7 @@ class ProductController extends Controller
         */
         // muestra los datos en pantalla y termina el codigo
         // here will be the code to call the model and save it to the database
+
+        // AÑADIMOS LOS GETTERS Y EL VALIDATE EN OTRA PARTE
     }
 }

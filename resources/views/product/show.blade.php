@@ -13,18 +13,18 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        @if ($viewData["product"]["price"] > 80)
+        @if ($viewData["product"]->getPrice() > 80)
          <span class = "text-danger"> 
          <h5 class="card-title">
-           {{ $viewData["product"]["name"] }}
+           {{ $viewData["product"]->getName() }}
           </h5>
          </span>
          @else
          <h5 class="card-title">
-           {{ $viewData["product"]["name"] }}
+           {{ $viewData["product"]->getName() }}
           </h5>
          @endif
-       <p class="card-text">{{ $viewData["product"]["price"]}}</p>
+       <p class="card-text">{{ $viewData["product"]->getPrice()}}</p>
          @foreach($viewData["product"]->comments as $comment)
           - {{ $comment->getDescription() }}<br />
         @endforeach
@@ -42,4 +42,5 @@
  Con bases de datos es similar porque al tener en product un objeto, el objeto tiene un metodo interno que permite buscar 
  con corchetes o flechas el atributo que se en uentra en el dicc attributes y devuelve el valor
 
+ AÑADIMOS GETTERS
  -->

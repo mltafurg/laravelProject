@@ -20,6 +20,8 @@ class Product extends Model // creacion clase prodcuct que hereda de model
      */
     protected $fillable = ['name', 'price'];
     // se crea una lista que guarda los valores del name y price por seguridad
+    // solo de estos atributos porque son los que se pueden modificar por el cliente o admin
+    // el id y los timestamps no porque son datos que pertenecen a la DB y este los genera 
     // getters y setters de cada atributo
 
     public function getId(): int
