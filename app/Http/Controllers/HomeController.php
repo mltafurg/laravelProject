@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-// OJO, PONER EL PHP INCIIO EN LA PRIMERA LINEA
-// ruta logica de la clase HomeController
+// NOTE, PUT THE OPENING PHP TAG ON THE FIRST LINE
+// logical route of the HomeController class
 
-use Illuminate\View\View; // IMPORTACION, usamos la clase view del framework
+use Illuminate\View\View; // IMPORT, we use the framework's View class
 
-class HomeController extends Controller // extends es para herencia!!
+class HomeController extends Controller // extends is for inheritance!!
 {
-    public function index(): View // funcion publica llamada index
-    // devuelve un valor tipo View!
+    public function index(): View
+    // public function called index
+    // returns a value of type View!
     {
         return view('home.index');
         /*
-        view lo que hace es procesar el archivo que le dan
-        para renderizarlo y mostrarlo al usuario
-        el punto actua como '/' antes del punto va
-        el nombre de la carpeta y despues el nombre del archivo
+        view processes the given file
+        to render it and show it to the user
+        the dot acts as a '/' before the dot goes
+        the folder name and after it the file name
         */
     }
 

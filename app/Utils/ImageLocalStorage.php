@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Utils;
 
@@ -10,9 +10,10 @@ class ImageLocalStorage implements ImageStorage
 {
     public function store(Request $request): void
     {
-        if ($request->hasFile('profile_image')) { // reivsa si el request manda algo en el campo de profileimage
-        // si es asi, guarda en el disco publico (muestra en la pg web lo que tiene ahi)
-        // el arhcivo con los contenidos de la imagen 
+        if ($request->hasFile('profile_image')) {
+            // validates if request sends somth in the profileimage variable
+            // if there is info, it gets stored in local disk (shows in the web page the info stored)
+            // the file with the details of the image
             Storage::disk('public')->put(
                 'test.png',
                 file_get_contents($request->file('profile_image')->getRealPath())

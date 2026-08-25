@@ -19,7 +19,7 @@ class ProductFactory extends Factory
     // funcion para crear un registro de producto de prueba
     {
         return [
-            // fake crea datos ficticios
+            // fake creates data
             'name' => fake()->name(), // name crea nombres ficticios
             'price' => fake()->numberBetween(10, 100), // genera datos pero solo entre 10 y 100
         ];

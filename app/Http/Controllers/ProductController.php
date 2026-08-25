@@ -2,37 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
     public function index(): View
-    {  // es un arreglo asociativo
+    {   // it's an associative array
         $viewData = [];
         $viewData['title'] = 'Products - Online Store';
         $viewData['subtitle'] = 'List of products';
-        // se guarda la tabla en el arrgelo con clave de productos
+        // we get all the products with each of the comments a product gets
         $viewData['products'] = Product::with('comments')->get();
 
-        // el modelo product con all() devuelve una coleccion donde cada elemento es un objeto
+        // before: the Product model's all() returns a collection where each element is an object
         return view('product.index')->with('viewData', $viewData);
-        // view es para buscar el archivo que se va a renderizar
+        // view is used to find the file that will be rendered
         /*
-        el metodo view(), lo que hace es instanciar un objeto de la clase
-        View. ese objeto tiene un diccionario vacio o con datos default
-        como se le añaden datos? con with(), con la clave en el primer parametro
-        y el dato en el segundo. lo bueno es que el with() añade este dato al view
-        y retorna ese mismo objeto ya con el dato guardado.
-        COMO FUNCIONA ESTO?
-        en el momento de ejecucion View lo que hace es convertir esas claves del
-        diccionario en varaibles que tengan los valores al cual la clave
-        estaba relacionada, al ya tener esas varabiles, vamos al archivo de
-        blade.php que es recorrido y si encuentra la variable del View inyectada
-        en el archivo, la trae y muestra sus datos.
+        what the view() method does is instantiate an object of the View
+        class. that object has an empty dictionary, or one with default
+        data. how do you add data to it? with with(), passing the key
+        as the first parameter and the data as the second. the nice thing
+        is that with() adds this data to the view and
+        returns that same object already holding the data.
+        HOW DOES THIS WORK?
+        at runtime, View takes those dictionary keys and turns
+        them into variables holding the values that the key
+        was associated with; once those variables exist, we go to the
+        blade.php file, which is scanned, and if it finds the View's
+        injected variable in the file, it brings it in and displays its data.
         */
 
     }
@@ -43,9 +44,9 @@ class ProductController extends Controller
 
         try {
             $product = Product::findOrFail($id);
-            $viewData['title'] = $product->getName() . ' - Online Store';
-            $viewData['subtitle'] = $product->getName() . ' - Product information';
-            $viewData['product'] = $product; 
+            $viewData['title'] = $product->getName().' - Online Store';
+            $viewData['subtitle'] = $product->getName().' - Product information';
+            $viewData['product'] = $product;
 
             return view('product.show')->with('viewData', $viewData);
         } catch (ModelNotFoundException) {
@@ -53,9 +54,9 @@ class ProductController extends Controller
         }
     }
 
-    // hacemos un try catch para seguir con la actividad opcional de ver si el id exixste o no, y si no existe es redirecionado a home
-    // muestra los datos de cada producto, el '.' sirve como concatenador
-    // delvulve los datos con view
+    // we use a try/catch to continue with the optional task of checking whether the id exists or not, and if it doesn't, redirect to home
+    // shows the data for each product, the '.' acts as a concatenator
+    // returns the data with view
 
     public function create(): View
     {
@@ -63,26 +64,25 @@ class ProductController extends Controller
         $viewData['title'] = 'Create product';
 
         return view('product.create')->with('viewData', $viewData);
-    } // funcion para crear productos
+    } // function to create products
 
     public function save(ProductRequest $request): RedirectResponse
     {
-    
+
         Product::create($request->only(['name', 'price']));
 
         return back();
 
-        // antes:         dd($request->all());
-        /* antes:
+        // before:         dd($request->all());
+        /* before:
         $viewData = []; //to be sent to the view
         $viewData["subtitle"] = "Product created succesfully! Yay!";
 
         return view('product.save') -> with("viewData", $viewData);
 
         */
-        // muestra los datos en pantalla y termina el codigo
+        // displays the data on screen and ends the code
         // here will be the code to call the model and save it to the database
 
-        // AÑADIMOS LOS GETTERS Y EL VALIDATE EN OTRA PARTE
     }
 }

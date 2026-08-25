@@ -17,9 +17,10 @@ class ImageController extends Controller
     public function save(Request $request): RedirectResponse
     {
         $storeInterface = app(ImageStorage::class);
-        // app devuelve una instancia del objeto ImageLocalStorage
+        // app returns an instance of the ImageLocalStorage object
         $storeInterface->store($request);
-       // ese objeto tiene la funcion store, que guarda la info de la imagen
+
+        // that object has the store function, which saves the image info
         return back();
     }
 }

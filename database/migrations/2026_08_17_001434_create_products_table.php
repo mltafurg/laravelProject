@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-    // esto es una clase anonima que hereda de Migration, se utiliza para evitar la colision de nombres en la carpetamigrations
+    // this is an anonymous class that extends Migration, used to avoid name collisions in the migrations folder
 {
     /**
      * Run the migrations.
@@ -14,32 +14,32 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
 
-            // schema es aquel  que tiene la logica de las consultas de bases de datos guardadas
-            // para que solo uno con los comandos de create (crea tabla nueva), modify o destroy realice lo q quiera
-            // create recibe el nombre de la tabla a crear y una funcion anonima
-            // que recibe como parametro una instancia de blueprint q es la que define que tiene la tabla
+            // schema is the one that holds the logic for the database queries
+            // so that only someone using the create (creates a new table), modify, or destroy commands can do what they want
+            // create receives the name of the table to create and an anonymous function
+            // which receives as a parameter an instance of blueprint, which defines what the table contains
 
-            $table->id(); // clave primaria
+            $table->id(); // primary key
 
-            // establece los tipos de las columnas:
+            // sets the column types:
 
             $table->string('name');
             $table->integer('price');
 
-            // important! esta funcion crea dos columnas: created_at, updated_at con tipo fecha!
+            // important! this function creates two columns: created_at, updated_at with date type!
             $table->timestamps();
         }
-        ); // cierre funcion anonima
+        ); // closing of the anonymous function
     }
-    // metodo que se ejecuta al hacer el comando php artisan migrate
-    // para construir la estrucutra de la BD
+    // method that runs when executing the php artisan migrate command
+    // to build the DB structure
 
     /**
      * Reverse the migrations.
-     * inverso del up(), elimina toda la estrucutra de una tabla
+     * the reverse of up(), removes the entire structure of a table
      */
     public function down(): void
     {
         Schema::dropIfExists('products'); // si existe products entonces se elimina
     }
-}; // cierre de la clase anonima
+};  // closing of the anonymous class

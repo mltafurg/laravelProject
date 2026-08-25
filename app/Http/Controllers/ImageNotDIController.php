@@ -16,8 +16,8 @@ class ImageNotDIController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
-        $storeImageLocal = new ImageLocalStorage();
-        // en vez de utilizar la interfaz utilizo la clase enseguida 
+        $storeImageLocal = new ImageLocalStorage;
+        // instead of using the interface, we use the class directly
         $storeImageLocal->store($request);
 
         return back();

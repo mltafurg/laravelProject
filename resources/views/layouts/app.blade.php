@@ -1,23 +1,23 @@
 <!doctype html>
 <html lang="en">
-<head> <!-- lugar para importar cosas y hacer configuraciones -->
+<head> <!-- place for imports and configuration -->
   <meta charset="utf-8" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- SE IMPORTA LA LIBRERIA DE BOOTSTRAP -->
+   <!-- IMPORTING THE BOOTSTRAP LIBRARY -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-  <!-- mi propio archivo de estilos -->
+  <!-- my own stylesheet file -->
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
-  <!-- IMPORTANT CONCEPTO, ESTO ES CONETENIDO DINAMICO
-   SE PUEDE CAMBIAR POR EL ARCHIVO HIJO, SINO SE PONE EL VALOR DEFAULT! -->
+  <!-- IMPORTANT CONCEPT, THIS IS DYNAMIC CONTENT
+   IT CAN BE OVERRIDDEN BY THE CHILD FILE, OTHERWISE THE DEFAULT VALUE IS USED! -->
   <title>@yield('title', 'Online Store')</title>
 </head>
-<body> <!-- AQUI LO QUE SALE EN PANTALLA
-   añadimos las rutas para que el usuario interactue con los botones
-   y le lleven a la pagina --> 
+<body> <!-- THIS IS WHAT IS SHOWN ON SCREEN
+   we add the routes so the user can interact with the buttons
+   and be taken to the page --> 
   <!-- header --> 
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
     <div class="container">
-      <!-- en el logo para ir a home --> 
+     <!-- the logo takes you to home --> 
       <a class="navbar-brand" href="{{ route('home.index') }}">Online Store</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <!-- para estos botones los llevan a index y about --> 
+           <!-- these buttons take you to index and about --> 
           <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
           <a class="nav-link active" href="{{ route('home.about') }}">About</a>
           <a class="nav-link active" href="{{ route('home.contact') }}">Contact</a>

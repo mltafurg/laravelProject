@@ -7,4 +7,5 @@ return [
     AppServiceProvider::class,
     ImageServiceProvider::class,
 ];
-// retorna el nombre de los archivos que laravel debe ejecutar al iniciarse
+
+// returns the name of the files that laravel needs to run when it is executed

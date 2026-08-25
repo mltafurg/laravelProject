@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\Product;
 
 class CartController extends Controller
 {
     public function index(Request $request): View
-    {   $products = Product::all();
+    {
+        $products = Product::all();
         $cartProducts = [];
-        $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
-        // en session hay una variable llamada ('cart_product_data') la cual buscamos y traemos aqui para guardar
-        // sus datos en la variable 
-        if ($cartProductData) { // si no esta vacia se hace esto: 
+        $cartProductData = $request->session()->get('cart_product_data'); // we get the products stored in session
+        // in the session there is a variable called ('cart_product_data') which we look for and bring here to save
+        // its data in the variable
+        if ($cartProductData) { // if it's not empty, we do this:
             foreach (array_keys($cartProductData) as $key) {
-                // recorremos el array con array_keys lo que hace es devolver solo las CLAVES del array
-                // ahi recorremos con foreach las claves y vamos guardando en cada iteracion la clave en $key
-                if (isset($products[$key])) { // nos preguntamos si existe esa clave (el id) en la lista de productos
-                    $cartProducts[$key] = $products[$key]; // si es asi se guarda la instancia del producto en
-                    // el arreglo cart 
+                // we loop through the array with array_keys, which returns only the KEYS of the array
+                // there we loop through the keys with foreach and store each key in $key on every iteration
+
+                if (isset($products[$key])) { // we check whether that key (the id) exists in the product list
+                    $cartProducts[$key] = $products[$key]; // if so, the product instance is stored in
+                    // the cart array
                 }
             }
         }
@@ -36,12 +38,12 @@ class CartController extends Controller
     }
 
     public function add(string $id, Request $request): RedirectResponse
-    { // recibe el id del producto, crea el arreglo que recibe la info del session que tiene los productos del carrito
+    { // receives the product id, creates the array that receives the session info holding the cart products
         $cartProductData = $request->session()->get('cart_product_data');
         $cartProductData[$id] = $id;
-        // aqui el arreeglo agrega un nuevo elemento con el valor de id siendo la posicion y lo que se guarda
+        // here the array adds a new element with the id value being the position and the value stored
         $request->session()->put('cart_product_data', $cartProductData);
-        // agregamos a el espacio de session el array
+        // we add the array to the session space
 
         return back();
     }
@@ -49,7 +51,7 @@ class CartController extends Controller
     public function removeAll(Request $request): RedirectResponse
     {
         $request->session()->forget('cart_product_data');
-        // vaciamos el espacio 
+        // we empty the space
 
         return back();
     }

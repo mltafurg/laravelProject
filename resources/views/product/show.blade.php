@@ -2,10 +2,10 @@
 @section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
-<!-- OJO, NO CONFUNDIRSE CON EL INDEX DE PRODUCTOS
- este no trae el mimso dato de la funcion index 
- sino el de la funcion de show que muestra la info de un producto 
- si le entregan el id a la funcion del controller --> 
+<!-- OJO, DON'T CONFUSE THIS WITH THE PRODUCTS INDEX
+ this does not bring the same data as the index function
+ but rather the one from the show function, which displays the info of a single product
+ if the id is given to the controller's function --> 
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
@@ -34,13 +34,13 @@
 </div>
 @endsection
 
-<!-- IMPORTANT!, como ya sabemos el viewdata tiene un product donde adentro esta toda la info de el producto
- pero entonces como accedemos a un solo dato?
- con un corchete al lado, significa que [dato del arreglo ext][dato del arreglo int], y como tenemos 
- un arreglo adentro de otro entonces ponemos product (arrelgo) y name que esta adentro de product  
-
- Con bases de datos es similar porque al tener en product un objeto, el objeto tiene un metodo interno que permite buscar 
- con corchetes o flechas el atributo que se en uentra en el dicc attributes y devuelve el valor
-
- AÑADIMOS GETTERS
+<!-- IMPORTANT!, as we already know, viewData has a product inside which is all the product's info
+ but then how do we access a single piece of data?
+ with a bracket next to it, meaning [outer array data][inner array data], and since we have
+ an array inside another one, we put product (array) and name which is inside product
+ 
+ With databases it's similar because, having an object in product, the object has an internal method that allows searching
+ with brackets or arrows for the attribute found in the attributes dict and returns the value
+ 
+ WE ADD GETTERS
  -->
