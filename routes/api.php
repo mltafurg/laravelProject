@@ -1,13 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) { // receives a petition from api/user since laravel has the rule
-    // including that part in this file
-    // we have a funcion
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::get('/user', 'App\Http\Controllers\Api\UserApiController@show')->middleware('auth:sanctum');
 
 // first method
 Route::get('/products', 'App\Http\Controllers\Api\ProductApiController@index')->name('api.product.index');
