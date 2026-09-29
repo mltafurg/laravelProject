@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 We have the routes of the web page,
@@ -8,6 +9,9 @@ we do a get request that comes from the web that is the first parameter
 the second one is what we do once we get that request, we connect it with a function of a controller
 the arrow is to assign a value to the route instead of writing all that long route again
 */
+
+Auth::routes();
+
 
 // HOME ROUTES
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
@@ -35,3 +39,6 @@ Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name('i
 // IMAGE WITHOUT INVERSION DEPENDENCY ROUTES
 Route::get('/image-not-di', 'App\Http\Controllers\ImageNotDIController@index')->name('imagenotdi.index');
 Route::post('/image-not-di/save', 'App\Http\Controllers\ImageNotDIController@save')->name('imagenotdi.save');
+
+
+
